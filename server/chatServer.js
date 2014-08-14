@@ -8,7 +8,17 @@ server.listen(8080, function(){
 var WebSocketServer = require('websocket').server;
 var wsServer = new WebSocketServer({ httpServer: server });
 
-wsServer.on('request', function(r){
+var count = 0;
+var clients = {};
 
+wsServer.on('request', function(r){
+	var connection = r.accept('echo-protocol', r.origin);
+
+	// Specific id for this client & increment count
+	var id = count++;
+	// Store the connection method so we can loop through & contact all clients
+	clients[id] = connection;
+
+	console.log((new Date()) + ' Connection accepted [' + id + ']');
 });
 
