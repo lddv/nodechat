@@ -1,0 +1,11 @@
+<html>
+	<head></head>
+	<body>
+		<div id="chatLog"></div>
+		<input id="message" type="text"/>
+		<input type="button" value="Button"/>
+	</body>
+	<script type="text/javascript">
+		var ws = new WebSocket('ws://127.0.0.1:8080', 'echo-protocol');
+	</script>
+</html>
