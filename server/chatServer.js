@@ -7,3 +7,8 @@ server.listen(8080, function(){
 
 var WebSocketServer = require('websocket').server;
 var wsServer = new WebSocketServer({ httpServer: server });
+
+wsServer.on('request', function(r){
+
+});
+
