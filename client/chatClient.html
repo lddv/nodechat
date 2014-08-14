@@ -1,11 +1,21 @@
 <html>
 	<head></head>
 	<body>
-		<div id="chatLog"></div>
+		<div id="chatlog"></div>
 		<input id="message" type="text"/>
-		<input type="button" value="Button"/>
+		<input type="button" value="Button" onclick="sendMessage();" />
 	</body>
 	<script type="text/javascript">
 		var ws = new WebSocket('ws://127.0.0.1:8080', 'echo-protocol');
+
+		ws.addEventListener('message', function(e){
+			var msg = e.data;
+			document.getElementById('chatlog').innerHTML += '<br>' + msg;
+		});
+
+		function sendMessage(){
+		    var message = document.getElementById('message').value;
+		    ws.send(message);
+		}
 	</script>
 </html>
